@@ -1,10 +1,13 @@
 <script lang="ts">
     import LockClosed from "../assets/locks/SchlossNormal.png"
     import LockClosedWp from "../assets/locks/SchlossNormal.webp"
+    import LockClosedSm from "../assets/locks/SchlossNormal.avif"
     import LockOpen from "../assets/locks/SchlossGrün.png"
     import LockOpenWp from "../assets/locks/SchlossGrün.webp"
+    import LockOpenSm from "../assets/locks/SchlossRot.avif"
     import LockSelected from "../assets/locks/SchlossRot.png"
     import LockSelectedWp from "../assets/locks/SchlossRot.webp"
+    import LockSelectedSM from "../assets/locks/SchlossRot.avif"
     import ArrowRed from "../assets/arrow_red.svg"
     import ArrowGray from "../assets/arrow_gray.svg"
     import StationPopup from "./StationPopup.svelte";
@@ -30,6 +33,15 @@
             return LockClosedWp
         }else {
             return LockOpenWp
+        }
+    }
+    $:current_lock_sm = () => {
+        if (station.status === 0) {
+            return LockSelectedSM
+        }else if (station.status < 0){
+            return LockClosedSm
+        }else {
+            return LockOpenSm
         }
     }
     $: current_arrow = () => {
@@ -70,7 +82,8 @@
     <button on:click={toggle_popup} class="static w-[3rem] xl:w-16 h-fit">
         <!--Lock-->
         <picture>
-            <source srcset={current_lock_wp()} type="image/webp">
+            <source srcset={current_lock_sm()} type="image/avif" width="320" height="519">
+            <source srcset={current_lock_wp()} type="image/webp" width="960" height="1556">
             <img src={current_lock()} alt={"Station: " + station.name} class="w-full" style={station.floor === floor ? "": "opacity: .5;"}>
         </picture>
         
