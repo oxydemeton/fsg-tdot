@@ -99,7 +99,9 @@
 
 <style>
     #bg {
-        background-color: #313131
+        background-color: #313131;
+        display: flex;
+        justify-content: center;
     }
     main {
         @apply overflow-hidden h-[100vh] w-[133vh] relative select-none;
