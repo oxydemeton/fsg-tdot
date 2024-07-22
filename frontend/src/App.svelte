@@ -99,7 +99,7 @@
 
 <style>
     #bg {
-        background-color: rgb(46, 46, 46)
+        background-color: #313131
     }
     main {
         @apply overflow-hidden h-[100vh] w-[133vh] relative select-none;
