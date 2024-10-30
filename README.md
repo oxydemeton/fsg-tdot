@@ -1,8 +1,8 @@
-# FSG TdoT 2022
+# FSG TdoT
 Das ist das Projekt zur Schülerführung am Tag der offenen Tür (TdoT) des [Fsg Geldern](https://fsggeldern.de).
 
 ## Anwendung
-Die Website soll am 03.12. auf SchulIPads genutzt werden, um den Gruppenführern einen Leitfaden für die Führung der neuen Schüler zu geben. Die aktuelle Version ist immer auf [schuelerfuehrung.fsggeldern.de](https://schuelerfuehrung.fsggeldern.de)
+Die Website ist für die IPads der Gruppenführer bei den Schühlerführungen am jährliuchen Tag der offenen Tür gemacht. Die aktuelle Version ist immer live auf [schuelerfuehrung.fsggeldern.de](https://schuelerfuehrung.fsggeldern.de)
 
 ## 2022
 Die Version von 2022 ist die Basis der folgenden Jahre und ist eine ältere Version dieses Repo.
