@@ -92,7 +92,7 @@
             {/each}
             </div>
         {:else}
-            <GroupSelector on:select={(g)=>group = g.detail}></GroupSelector>
+            <GroupSelector onselect={(g)=>group = g}></GroupSelector>
         {/if}
     </main>
 </div>

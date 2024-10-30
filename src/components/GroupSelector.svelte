@@ -1,8 +1,7 @@
 <script lang="ts">
     import {group_count} from "../script/StationsGroupsConfig";
 
-    import { createEventDispatcher } from 'svelte';
-    const dispatch = createEventDispatcher();
+    const {onselect}: {onselect: (group:number)=>void} = $props()
 </script>
 
 <style>
@@ -23,7 +22,7 @@
                 w-full h-full rounded-2xl backdrop-blur-lg
                 text-4xl font-extrabold font-mono
                 hover:ring-4 ring-fsg shadow-lg"
-                    on:click={()=>dispatch("select", i)}>
+                    onclick={()=>onselect(i)}>
                 Gruppe {i+1}
             </button>
         {/each}

@@ -1,19 +1,17 @@
 <script lang="ts">
+    import {all_stations} from "../script/StationsGroupsConfig.js";
+    import Spoiler from "./Spoiler.svelte";
+    import LockGreen from "../assets/locks/SchlossGrün.png"
+    import LockGreenWp from "../assets/locks/SchlossGrün.webp"
+    import LockRed from "../assets/locks/SchlossRot.png"
+    import LockRedWp from "../assets/locks/SchlossRot.webp"
+    import LockDefault from "../assets/locks/SchlossNormal.png"
+    import LockDefaultWp from "../assets/locks/SchlossNormal.webp"
+    import ArrowRed from "../assets/arrow_red.svg"
+    import ArrowGray from "../assets/arrow_gray.svg"
+    import QR from "../assets/qrcode.png"
 
-import {all_stations} from "../script/StationsGroupsConfig.js";
-import Spoiler from "./Spoiler.svelte";
-import LockGreen from "../assets/locks/SchlossGrün.png"
-import LockGreenWp from "../assets/locks/SchlossGrün.webp"
-import LockRed from "../assets/locks/SchlossRot.png"
-import LockRedWp from "../assets/locks/SchlossRot.webp"
-import LockDefault from "../assets/locks/SchlossNormal.png"
-import LockDefaultWp from "../assets/locks/SchlossNormal.webp"
-import ArrowRed from "../assets/arrow_red.svg"
-import ArrowGray from "../assets/arrow_gray.svg"
-import QR from "../assets/qrcode.png"
-
-import { createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
+    const {onclose}: {onclose: ()=>void} = $props()
 </script>
 
 <style>
@@ -68,7 +66,7 @@ const dispatch = createEventDispatcher();
 
 <dialog open>
     <div class="Info w-2/3 xl:w-1/2">
-        <button type="button" on:click={()=>dispatch("close")} class="
+        <button type="button" onclick={onclose} class="
             rounded-xl text-2xl text-black bg-main w-12 h-12 font-extrabold font-mono hover:ring-4 ring-fsg text-center shadow-xl">
             X
         </button>
