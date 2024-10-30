@@ -1,7 +1,12 @@
-<script>
-    export let label = "Anzeigen"
-    export let disabled = false
-    let show = false
+<script lang="ts">
+    interface Props {
+        label?: string;
+        disabled?: boolean;
+        children?: import('svelte').Snippet;
+    }
+
+    let { label = "Anzeigen", disabled = false, children }: Props = $props();
+    let show = $state(false)
 </script>
 
 <style>
@@ -9,8 +14,8 @@
 
 <div class="spoiler">
     {#if (!show)}
-        <button on:click={()=>show=true} class="italic hover:underline" type="button" disabled={disabled}>{label}</button>
+        <button onclick={()=>show=true} class="italic hover:underline" type="button" disabled={disabled}>{label}</button>
     {:else}
-        <slot></slot>
+        {@render children?.()}
     {/if}
 </div>

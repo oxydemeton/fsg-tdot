@@ -1,5 +1,6 @@
 <script lang="ts">
-    export let station: string
+
+    const { station }: { station: string } = $props();
 </script>
 
 <svelte:head>
