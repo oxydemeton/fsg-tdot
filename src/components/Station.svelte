@@ -12,12 +12,33 @@
     import ArrowGray from "../assets/arrow_gray.svg"
     import StationPopup from "./StationPopup.svelte";
     import type {Station as StationApp} from "../script/Station"
-    export let station: StationApp
-    export let floor: number
-    export let group: number
-    export let last: boolean = false
+
+    let show_popup = $state(false)
+    //Function on click of the Lock
+    function toggle_popup() {
+        if (station.status === 0) {
+            show_popup = !show_popup
+        }
+    }
+
+    interface Props {
+        station: StationApp;
+        floor: number;
+        group: number;
+        last?: boolean;
+        ondone: ()=>void;
+    }
+
+    let {
+        station = $bindable(),
+        floor = $bindable(),
+        group = $bindable(),
+        last = $bindable(false),
+        ondone
+    }: Props = $props();
+
     //Selecting correct Image to be shown
-    $: current_lock = () => {
+    const current_lock = $derived(() => {
         if (station.status === 0) {
             return LockSelected
         }else if (station.status < 0){
@@ -25,8 +46,8 @@
         }else {
             return LockOpen
         }
-    }
-    $:current_lock_wp = () => {
+    })
+    const current_lock_wp = $derived(() => {
         if (station.status === 0) {
             return LockSelectedWp
         }else if (station.status < 0){
@@ -34,8 +55,8 @@
         }else {
             return LockOpenWp
         }
-    }
-    $:current_lock_sm = () => {
+    })
+    const current_lock_sm = $derived(() => {
         if (station.status === 0) {
             return LockSelectedSM
         }else if (station.status < 0){
@@ -43,33 +64,22 @@
         }else {
             return LockOpenSm
         }
-    }
-    $: current_arrow = () => {
+    })
+    const current_arrow = $derived(() => {
         return station.status === 0 ? ArrowRed: ArrowGray
-    }
+    })
     //Calculated Opacity of the arrow indicating the level whether the station is the current one or not
-    $: arrow_opacity = () => {
+    const arrow_opacity = $derived(() => {
         if (station.status === 0) {
             return "1"
         }else {
             return "0.6"
         }
-    }
-    let show_popup = false
-    //Function on click of the Lock
-    function toggle_popup() {
-        if (station.status === 0) {
-            show_popup = !show_popup
-        }
-    }
+    })
     //Whether the station popup should be shown
-    $: popup = () => {
+    const popup = $derived(() => {
         return station.status === 0 && show_popup
-    }
-
-    import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
+    })
 </script>
 
 <style>
@@ -79,7 +89,7 @@
 </style>
 
 <div class="absolute w-28 h-28" style="left: {station.pos.x}%; top: {station.pos.y}%;">
-    <button on:click={toggle_popup} class="static w-[3rem] xl:w-16 h-fit">
+    <button onclick={toggle_popup} class="static w-[3rem] xl:w-16 h-fit">
         <!--Lock-->
         <picture>
             <source srcset={current_lock_sm()} type="image/avif" width="320" height="519">
@@ -95,6 +105,6 @@
         {/if}
     </button>
     {#if (popup())}
-        <StationPopup station={station} ondone={()=>dispatch("done")} bind:group={group} onclose={toggle_popup} bind:last={last}></StationPopup>
+        <StationPopup station={station} {ondone} bind:group={group} onclose={toggle_popup} bind:last={last}></StationPopup>
     {/if}
 </div>

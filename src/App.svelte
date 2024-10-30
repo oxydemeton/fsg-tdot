@@ -88,7 +88,7 @@
             </button>
             <div id="Stations">
             {#each all_stations as sta, i (i)}
-                <Station bind:station={sta} on:done={()=>station_done(i)} bind:floor={floor} bind:group={group} last={i === (all_stations.length -1)}></Station>
+                <Station bind:station={sta} ondone={()=>station_done(i)} bind:floor={floor} bind:group={group} last={i === (all_stations.length -1)}></Station>
             {/each}
             </div>
         {:else}
