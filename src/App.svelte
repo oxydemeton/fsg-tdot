@@ -1,7 +1,7 @@
 <script lang="ts">
     import Header from "./Header.svelte";
     import {all_stations, default_status, group_count, id_by_group_and_num} from "./script/StationsGroupsConfig"
-    import Map from "./components/Map.svelte";
+    import MapComp from "./components/Map.svelte";
     import Station from "./components/Station.svelte";
     import GroupSelector from "./components/GroupSelector.svelte";
     import ResetIcon from "./assets/reset.png"
@@ -35,7 +35,7 @@
         console.log("RESET")
     }
     //Function to be called if the a station is done
-    function station_done(station_id) {
+    function station_done(station_id: number) {
         station_num++
         //Reset after last station
         if(station_num >= all_stations.length){
@@ -47,20 +47,20 @@
     }
 
     //Code to execute on page Load
-    const hash_params = {}
+    const hash_params: Map<string, string> = new Map()
     window.location.hash.replace("#", "").split("&").forEach((t)=>{
         const name = t.split("=")[0]
-        if (t.split("=").length > 0) hash_params[name] = t.split("=")[1]
-        else hash_params[name] = true
+        if (t.split("=").length > 0) hash_params.set(name, t.split("=")[1]) 
+        else hash_params.set(name, "")
     })
     //If the group is given as a parameter use it, otherwise show selector
-    if (!isNaN(Number(hash_params["group"]))) {
-        group = Number(hash_params["group"]) % group_count
+    if (!isNaN(Number(hash_params.get("group")))) {
+        group = Number(hash_params.get("group")) % group_count
     }
-    console.log(Number(hash_params["station"]));
+    console.log(Number(hash_params.get("station")));
     
-    if (!isNaN(Number(hash_params["station"]))) {
-        station_num = Number(hash_params["station"]) % all_stations.length
+    if (!isNaN(Number(hash_params.get("station")))) {
+        station_num = Number(hash_params.get("station")) % all_stations.length
         for (let i = 0; i < station_num; i++) {
             all_stations[id_by_group_and_num(group, i)].status = 1
         } 
@@ -72,7 +72,7 @@
 <Header station={all_stations[id_by_group_and_num(group, station_num)].name}></Header>
 <div id="bg">
     <main>
-        <Map bind:floor_lvl={floor}> </Map>
+        <MapComp bind:floor_lvl={floor}> </MapComp>
         <div id="Info">
             {#if (show_info)}
                 <InfoScreen on:close={()=>show_info=false}></InfoScreen>

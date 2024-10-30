@@ -11,7 +11,7 @@
     let mistake = ""
 
     //Check solution if needed and if correct trigger event
-    function submit(e){
+    function submit(e: Event){
         e.preventDefault()
         console.log(txt);
         
