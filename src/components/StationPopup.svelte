@@ -1,14 +1,18 @@
 <script lang="ts">
     import type {Station} from "../script/Station";
-    export let station: Station
-    export let group: number
-    export let last: boolean = false
-    import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
+    interface Props {
+        station: Station;
+        group: number;
+        last?: boolean;
+        ondone: ()=>void;
+        onclose: ()=>void;
+    }
+
+    const { station = $bindable(), group = $bindable(), last = $bindable(false), ondone, onclose }: Props = $props();
     //User input
-    let txt = ""
+    let txt = $state("")
     //Text shown as error message
-    let mistake = ""
+    let mistake = $state("")
 
     //Check solution if needed and if correct trigger event
     function submit(e: Event){
@@ -16,25 +20,25 @@
         console.log(txt);
         
         if (station.solution === undefined) {
-            dispatch("done")
+            ondone()
         } else if (station.solution(txt)) {
-            dispatch("done")
+            ondone()
         } else {
             mistake = "Das Lösungswort ist falsch."
             txt = ""
         }
     }
     //Text shown on submit button based on different conditions
-    $: btn_txt = () => {
+    let btn_txt = $derived(() => {
         if (last) return "Neustarten"
         else if (station.solution) return "Lösung Prüfen"
         else return "Weiter"
-    }
+    })
 </script>
 
 <dialog open>
-    <form on:submit={submit} class="w-fit min-w-1/3 max-w-2/3">
-        <button type="button" on:click={()=>dispatch("close")} class="
+    <form onsubmit={submit} class="w-fit min-w-1/3 max-w-2/3">
+        <button type="button" onclick={onclose} class="
             rounded-xl text-2xl text-black bg-main w-12 h-12 font-extrabold font-mono hover:ring-4 ring-fsg text-center shadow-md">
             X
         </button>

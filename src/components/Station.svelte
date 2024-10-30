@@ -95,6 +95,6 @@
         {/if}
     </button>
     {#if (popup())}
-        <StationPopup station={station} on:done={()=>dispatch("done")} bind:group={group} on:close={toggle_popup} bind:last={last}></StationPopup>
+        <StationPopup station={station} ondone={()=>dispatch("done")} bind:group={group} onclose={toggle_popup} bind:last={last}></StationPopup>
     {/if}
 </div>
