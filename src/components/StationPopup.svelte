@@ -31,26 +31,7 @@
         else return "Weiter"
     }
 </script>
-<style>
-    * {
-        @apply outline-0;
-    }
-    .submit-btn {
-        @apply rounded-lg bg-light/90 w-full p-0.5 my-1 border-2 border-dark font-semibold text-xl;
-    }
-    form {
-        @apply h-auto bg-main/70 backdrop-blur-3xl rounded-xl mt-1 p-4;
-    }
-    dialog {
-        @apply fixed top-0 left-0 flex justify-center items-center h-screen w-screen bg-light/50 z-20 backdrop-blur select-none shadow-xl;
-    }
-    h2 {
-        @apply text-5xl font-bold font-mono w-full text-center;
-    }
-    h3 {
-        @apply italic font-serif text-2xl;
-    }
-</style>
+
 <dialog open>
     <form on:submit={submit} class="w-fit min-w-1/3 max-w-2/3">
         <button type="button" on:click={()=>dispatch("close")} class="
@@ -79,3 +60,24 @@
         </div>
     </form>
 </dialog>
+
+<style>
+    * {
+        @apply outline-0;
+    }
+    .submit-btn {
+        @apply rounded-lg bg-light/90 w-full p-0.5 my-1 border-2 border-dark font-semibold text-xl;
+    }
+    form {
+        @apply h-auto bg-main/70 backdrop-blur-3xl rounded-xl mt-1 p-4;
+    }
+    dialog {
+        @apply fixed top-0 left-0 flex justify-center items-center h-screen w-screen bg-light/50 z-20 backdrop-blur select-none shadow-xl;
+    }
+    h2 {
+        @apply text-5xl font-bold font-mono w-full text-center;
+    }
+    h3 {
+        @apply italic font-serif text-2xl;
+    }
+</style>
