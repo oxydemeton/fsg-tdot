@@ -11,3 +11,14 @@ Der [Release 1.0.0 2022](https://github.com/oxydemeton/fsg-tdot/releases/tag/v1.
 ## 2021
 [Sourcecode](https://github.com/oxydemeton/fsg-tdot-2021/)<br/>
 [Live Archiv Website](https://tdot2021.mabla.name)
+
+## Techstack
+- Svelte: Frontendframework
+- Typescript
+- Vite: Buildsystem
+- Tailwindcss
+
+## Project Structure
+- [entry point](src/App.svelte)
+- [components](src/components)
+- [Group/Station config](src/script/StationsGroupsConfig.ts)
