@@ -164,7 +164,8 @@ const dispatch = createEventDispatcher();
         <details class="text-center italic">
             <summary>Links</summary>
             <a href="https://www.fsggeldern.de" class="block hover:text-fsg">Fsg Geldern</a>
-            <a href="https://github.com/oxydemeton/fsg-tdot-2022/" class="block hover:text-fsg">Source Code 2022</a>
+            <a href="https://github.com/oxydemeton/fsg-tdot" class="block hover:text-fsg">Aktueller Source Code</a>
+            <a href="https://github.com/oxydemeton/fsg-tdot/releases/tag/v1.0.0/" class="block hover:text-fsg">Source Code 2022</a>
             <a href="https://github.com/oxydemeton/fsg-tdot-2021/" class="block hover:text-fsg">Source Code 2021</a>
             <a href="https://tdot2022.mabla.name/" class="block hover:text-fsg">Archiv live Website 2022</a>
             <a href="https://tdot2021.mabla.name/" class="block hover:text-fsg">Archiv live Website 2021</a>
